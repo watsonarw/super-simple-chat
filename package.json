@@ -1,0 +1,35 @@
+{
+  "name": "super-simple-chat",
+  "version": "1.0.0",
+  "description": "A super simple chatroom API, built using serverless.com framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'No tests :-(' && exit 1",
+    "deploy": "serverless deploy",
+    "deploy:function": "serverless deploy function --function app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/watsonarw/super-simple-chat.git"
+  },
+  "keywords": [
+    "serverless",
+    "express",
+    "aws",
+    "dynamodb"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/watsonarw/super-simple-chat/issues"
+  },
+  "homepage": "https://github.com/watsonarw/super-simple-chat#readme",
+  "dependencies": {
+    "aws-sdk": "^2.447.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "serverless": "^1.41.1",
+    "serverless-http": "^2.0.1",
+    "uuid": "^3.3.2"
+  }
+}
