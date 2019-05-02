@@ -15,7 +15,7 @@ const getMessage = (req, res) => {
 
   dynamoDb.get(params, (error, result) => {
     if (error) {
-      console.log(error);
+      console.error(error);
       res.status(400).json({ error: 'Could not get message' });
     }
 
@@ -26,6 +26,24 @@ const getMessage = (req, res) => {
       res.status(404).json({ error: "Message not found" });
     }
   });
+}
+
+const listMessages = (req, res) => {
+  const params = {
+    TableName: MESSAGES_TABLE,
+  }
+
+  dynamoDb.scan(params, (error, result) => {
+    if (error) {
+      console.error(error);
+      res.status(400).json({ error: 'Could not list messages' });
+    }
+
+    console.log(`Found ${result.Count} messages`);
+    const { Items, Count } = result;
+
+    res.json({ messages: Items, count: Count});
+  })
 }
 
 const validate = (req, res) => {
@@ -71,7 +89,7 @@ const createMessage = (req, res) => {
 
   dynamoDb.put(params, (error) => {
     if (error) {
-      console.log(error);
+      console.error(error);
       res.status(400).json({ error: 'Could not create message' });
     }
     res.json(Item);
@@ -80,5 +98,6 @@ const createMessage = (req, res) => {
 
 module.exports = {
   getMessage,
+  listMessages,
   createMessage,
 };
