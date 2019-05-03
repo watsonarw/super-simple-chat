@@ -70,5 +70,13 @@ You will need:
 1. Setup credentials for the aws account you want to deploy to
 2. run `yarn deploy`
 
+#### Custom domain
+
+To setup a custom domain:
+1. Register a domain - e.g. `example.com`
+2. Create a new Route53 Hosted zone for the domain in the AWS dashboard
+3. Create a new ACM certificate for the domain in the AWS dashboard
+4. run `DOMAIN_NAME=example.com yarn deploy:domain`
+5. Wait for the API Gateway certificate to provision (it can take up to 40 minutes).
 
 [Serverless framework]: https://serverless.com

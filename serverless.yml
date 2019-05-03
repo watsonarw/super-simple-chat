@@ -1,8 +1,16 @@
 service: super-simple-chat
 
+plugins:
+  - serverless-domain-manager
+
 custom:
 
   tableName: 'messages-${self:provider.stage}'
+  customDomain:
+    domainName: ${env:DOMAIN_NAME}
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
 
 provider:
 
