@@ -68,7 +68,7 @@ You will need:
 ### Deployment
 
 1. Setup credentials for the aws account you want to deploy to
-2. run `yarn deploy`
+2. run `DOMAIN_NAME=example.com yarn deploy`
 
 #### Custom domain
 
