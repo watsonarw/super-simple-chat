@@ -1,11 +1,11 @@
-const bodyParser = require('body-parser');
-const express = require('express');
-const cors = require('cors');
-const { getMessage, createMessage, listMessages } = require('./messages');
+import { json } from 'body-parser';
+import express from 'express';
+import cors from 'cors';
+import { getMessage, createMessage, listMessages } from './messages';
 
 const app = express();
 
-app.use(bodyParser.json({ strict: false }));
+app.use(json());
 app.use(cors());
 
 app.get('/messages/:id', getMessage);
@@ -14,4 +14,4 @@ app.get('/messages', listMessages);
 
 app.post('/messages', createMessage);
 
-module.exports = app;
+export default app;

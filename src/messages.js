@@ -1,11 +1,11 @@
-const AWS = require('aws-sdk');
-const createID = require('uuid/v4');
+import DynamoDB from 'aws-sdk/clients/dynamodb';
+import createID from 'uuid/v4';
 
 const MESSAGES_TABLE = process.env.MESSAGES_TABLE;
 
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
+const dynamoDb = new DynamoDB.DocumentClient();
 
-const getMessage = (req, res) => {
+export const getMessage = (req, res) => {
   const params = {
     TableName: MESSAGES_TABLE,
     Key: {
@@ -26,9 +26,9 @@ const getMessage = (req, res) => {
       res.status(404).json({ error: "Message not found" });
     }
   });
-}
+};
 
-const listMessages = (req, res) => {
+export const listMessages = (req, res) => {
   const params = {
     TableName: MESSAGES_TABLE,
   }
@@ -44,7 +44,7 @@ const listMessages = (req, res) => {
 
     res.json({ messages: Items, count: Count});
   })
-}
+};
 
 const validate = (req, res) => {
   const { message, user } = req.body;
@@ -62,9 +62,9 @@ const validate = (req, res) => {
   }
 
   return true;
-}
+};
 
-const createMessage = (req, res) => {
+export const createMessage = (req, res) => {
   if (!validate(req, res)) {
     console.warn('Request was invalid, failing.');
     return;
@@ -94,10 +94,4 @@ const createMessage = (req, res) => {
     }
     res.json(Item);
   });
-}
-
-module.exports = {
-  getMessage,
-  listMessages,
-  createMessage,
 };

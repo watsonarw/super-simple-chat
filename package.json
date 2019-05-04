@@ -38,5 +38,6 @@
     "serverless-domain-manager": "^3.2.1",
     "serverless-webpack": "^5.3.0",
     "webpack": "^4.30.0"
-  }
+  },
+  "sideEffects": false
 }
