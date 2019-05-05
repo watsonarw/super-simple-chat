@@ -1,5 +1,6 @@
 import DynamoDB from 'aws-sdk/clients/dynamodb';
 import createID from 'uuid/v4';
+import { byTimestamp } from './sortHelpers';
 
 const MESSAGES_TABLE = process.env.MESSAGES_TABLE;
 
@@ -42,7 +43,7 @@ export const listMessages = (req, res) => {
     console.log(`Found ${result.Count} messages`);
     const { Items, Count } = result;
 
-    res.json({ messages: Items, count: Count});
+    res.json({ messages: Items.sort(byTimestamp), count: Count});
   })
 };
 
