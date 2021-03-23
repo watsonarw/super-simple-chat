@@ -1,5 +1,5 @@
 import DynamoDB from 'aws-sdk/clients/dynamodb';
-import createID from 'uuid/v4';
+import { v4 as createID } from 'uuid';
 import { byTimestamp } from './sortHelpers';
 
 const MESSAGES_TABLE = process.env.MESSAGES_TABLE;
